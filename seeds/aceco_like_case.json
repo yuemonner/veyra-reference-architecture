@@ -1,0 +1,206 @@
+{
+  "review_request": {
+    "review_id": "review-line-a-2026-08-05",
+    "question": "Should Line A Conveyor return to service after deployment rev_218?",
+    "asset_id": "line-a-conveyor",
+    "requested_at": "2026-08-05T09:45:00Z",
+    "window_start": "2026-08-05T08:45:00Z",
+    "window_end": "2026-08-05T09:45:00Z",
+    "required_evidence": ["test_result", "inspection"],
+    "anchors": {
+      "deployment_id": "rev_218",
+      "ticket_id": "OPS-418"
+    }
+  },
+  "events": [
+    {
+      "event_id": "evt_deploy_rev_218",
+      "source": {
+        "system": "github_actions",
+        "record_id": "run-7741",
+        "ingested_at": "2026-08-05T08:52:00Z"
+      },
+      "event_type": "deployment",
+      "occurred_at": "2026-08-05T08:51:14Z",
+      "asset": {
+        "asset_id": "line-a-conveyor",
+        "asset_type": "industrial_equipment",
+        "subsystem": "perception_runtime"
+      },
+      "anchors": {
+        "deployment_id": "rev_218",
+        "ticket_id": "OPS-418"
+      },
+      "severity": "info",
+      "summary": "Perception runtime rev_218 deployed to Line A Conveyor edge module.",
+      "measurements": {
+        "commit": "7f34ad1",
+        "module": "perception_runtime",
+        "rollout": "single_asset"
+      },
+      "evidence_role": "context",
+      "raw_ref": "local://github/run-7741.json"
+    },
+    {
+      "event_id": "evt_test_rev_218",
+      "source": {
+        "system": "azure_devops",
+        "record_id": "test-218-17",
+        "ingested_at": "2026-08-05T08:57:00Z"
+      },
+      "event_type": "test_result",
+      "occurred_at": "2026-08-05T08:56:30Z",
+      "asset": {
+        "asset_id": "line-a-conveyor",
+        "asset_type": "industrial_equipment",
+        "subsystem": "perception_runtime"
+      },
+      "anchors": {
+        "deployment_id": "rev_218"
+      },
+      "severity": "info",
+      "summary": "Smoke tests passed for container startup, frame ingestion and watchdog registration.",
+      "measurements": {
+        "passed": 31,
+        "failed": 0,
+        "duration_seconds": 184
+      },
+      "evidence_role": "for_proceeding",
+      "raw_ref": "local://ado/test-218-17.json"
+    },
+    {
+      "event_id": "evt_runtime_torque_84392",
+      "source": {
+        "system": "iot_hub",
+        "record_id": "telemetry-84392",
+        "ingested_at": "2026-08-05T09:13:04Z"
+      },
+      "event_type": "runtime_anomaly",
+      "occurred_at": "2026-08-05T09:12:41Z",
+      "asset": {
+        "asset_id": "line-a-conveyor",
+        "asset_type": "industrial_equipment",
+        "subsystem": "drive_assembly"
+      },
+      "anchors": {
+        "deployment_id": "rev_218",
+        "ticket_id": "OPS-418"
+      },
+      "severity": "review",
+      "summary": "Torque variance exceeded the envelope held since deployment rev_214.",
+      "measurements": {
+        "torque_variance_pct": 18.4,
+        "belt_speed_mps": 0.92,
+        "drive_temperature_c": 71,
+        "signals_captured": 1284
+      },
+      "evidence_role": "against_proceeding",
+      "raw_ref": "local://iot/telemetry-84392.json"
+    },
+    {
+      "event_id": "evt_operator_hold_117",
+      "source": {
+        "system": "operator_form",
+        "record_id": "hold-117",
+        "ingested_at": "2026-08-05T09:18:22Z"
+      },
+      "event_type": "operator_intervention",
+      "occurred_at": "2026-08-05T09:17:56Z",
+      "asset": {
+        "asset_id": "line-a-conveyor",
+        "asset_type": "industrial_equipment",
+        "subsystem": "drive_assembly"
+      },
+      "anchors": {
+        "ticket_id": "OPS-418"
+      },
+      "severity": "review",
+      "summary": "Operator held the conveyor after abnormal vibration near Drive Assembly 02.",
+      "measurements": {
+        "operator": "field-tech-12",
+        "action": "hold",
+        "control_path": "manual"
+      },
+      "evidence_role": "against_proceeding",
+      "raw_ref": "local://forms/hold-117.json"
+    },
+    {
+      "event_id": "evt_maintenance_bearing_0624",
+      "source": {
+        "system": "maintenance",
+        "record_id": "maint-0624",
+        "ingested_at": "2026-08-05T08:59:01Z"
+      },
+      "event_type": "maintenance",
+      "occurred_at": "2026-06-24T15:20:00Z",
+      "asset": {
+        "asset_id": "line-a-conveyor",
+        "asset_type": "industrial_equipment",
+        "subsystem": "drive_assembly"
+      },
+      "anchors": {
+        "work_order_id": "WO-884"
+      },
+      "severity": "info",
+      "summary": "Bearing replaced on Drive Assembly 02 six weeks before the review.",
+      "measurements": {
+        "part": "bearing",
+        "technician": "M. Reinholt"
+      },
+      "evidence_role": "context",
+      "raw_ref": "local://maintenance/maint-0624.json"
+    },
+    {
+      "event_id": "evt_prior_stoppage_0314",
+      "source": {
+        "system": "incident_review",
+        "record_id": "ir-0314",
+        "ingested_at": "2026-08-05T09:01:00Z"
+      },
+      "event_type": "outcome",
+      "occurred_at": "2026-03-14T11:03:00Z",
+      "asset": {
+        "asset_id": "line-a-conveyor",
+        "asset_type": "industrial_equipment",
+        "subsystem": "drive_assembly"
+      },
+      "anchors": {
+        "incident_id": "INC-0314"
+      },
+      "severity": "incident",
+      "summary": "Same torque signature preceded a four-hour stoppage.",
+      "measurements": {
+        "outcome": "4-hour stoppage",
+        "downtime_hours": 4
+      },
+      "evidence_role": "context",
+      "raw_ref": "local://incidents/ir-0314.json"
+    },
+    {
+      "event_id": "evt_prior_tension_0202",
+      "source": {
+        "system": "maintenance",
+        "record_id": "maint-0202",
+        "ingested_at": "2026-08-05T09:01:10Z"
+      },
+      "event_type": "outcome",
+      "occurred_at": "2026-02-02T10:18:00Z",
+      "asset": {
+        "asset_id": "line-a-conveyor",
+        "asset_type": "industrial_equipment",
+        "subsystem": "drive_assembly"
+      },
+      "anchors": {
+        "work_order_id": "WO-701"
+      },
+      "severity": "info",
+      "summary": "Variance cleared after belt tension adjustment.",
+      "measurements": {
+        "outcome": "cleared after belt tension adjustment"
+      },
+      "evidence_role": "context",
+      "raw_ref": "local://maintenance/maint-0202.json"
+    }
+  ]
+}
+

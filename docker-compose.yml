@@ -1,0 +1,21 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      VEYRA_ENV: local
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: veyra
+      POSTGRES_PASSWORD: veyra
+      POSTGRES_DB: veyra
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+

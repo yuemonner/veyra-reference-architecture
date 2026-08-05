@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Veyra Reference Workspace</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f7f7f5;
+        --panel: #ffffff;
+        --ink: #111111;
+        --muted: #666666;
+        --line: #e4e4e1;
+        --blue: #2457ff;
+        --red: #c93c3c;
+        --amber: #9a6a11;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 28px 36px;
+        border-bottom: 1px solid var(--line);
+      }
+      .brand { display: flex; gap: 12px; align-items: center; font-weight: 700; }
+      .mark { width: 12px; height: 12px; border-radius: 999px; background: #111; }
+      main {
+        display: grid;
+        grid-template-columns: 320px 1fr 420px;
+        min-height: calc(100vh - 85px);
+      }
+      aside, section {
+        border-right: 1px solid var(--line);
+        padding: 28px;
+      }
+      h1, h2, h3, p { margin-top: 0; }
+      h1 { font-size: 30px; letter-spacing: 0; }
+      h2 { font-size: 15px; color: var(--muted); text-transform: uppercase; letter-spacing: .16em; }
+      .asset {
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+        color: var(--muted);
+      }
+      .asset strong { color: var(--ink); }
+      .timeline { display: grid; gap: 14px; }
+      .event {
+        display: grid;
+        grid-template-columns: 74px 1fr auto;
+        gap: 18px;
+        align-items: start;
+        padding: 18px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+      }
+      .event.review { border-color: #d6e0ff; background: #f7f9ff; }
+      .event.incident { border-color: #f0c9c9; background: #fff8f8; }
+      .time, .meta, .muted { color: var(--muted); }
+      .pill {
+        border-radius: 999px;
+        padding: 5px 10px;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .08em;
+        background: #efefed;
+      }
+      .pill.review { color: var(--blue); background: #e8edff; }
+      .pill.incident { color: var(--red); background: #ffe8e8; }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 24px;
+        margin-bottom: 20px;
+      }
+      .metric-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .metric-row:last-child { border-bottom: 0; }
+      ul { margin: 0; padding-left: 18px; }
+      li { margin: 9px 0; color: var(--muted); }
+      .status { color: var(--red); font-weight: 700; }
+      .action { color: var(--blue); font-weight: 700; }
+      footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="brand"><span class="mark"></span> Veyra Reference Workspace</div>
+      <div class="muted">read-only · no control path · decision evidence</div>
+    </header>
+    <main>
+      <aside>
+        <h2>Assets</h2>
+        <div class="asset"><strong>Line A Conveyor</strong><span>review</span></div>
+        <div class="asset"><span>AMR-07</span><span>nominal</span></div>
+        <div class="asset"><span>Robot Fleet North</span><span>nominal</span></div>
+        <div class="asset"><span>Solar Node 017</span><span>nominal</span></div>
+        <footer>This static workspace mirrors the API output from the sample case.</footer>
+      </aside>
+      <section>
+        <h1>Operational history</h1>
+        <p class="muted">Line A Conveyor · return-to-service review · deployment rev_218</p>
+        <div class="timeline">
+          <article class="event">
+            <div class="time">08:51</div>
+            <div>
+              <strong>Deployment</strong>
+              <div class="meta">Perception runtime rev_218 deployed to edge module.</div>
+            </div>
+            <span class="pill">context</span>
+          </article>
+          <article class="event">
+            <div class="time">08:56</div>
+            <div>
+              <strong>Smoke tests passed</strong>
+              <div class="meta">31 passed · 0 failed · watchdog registered.</div>
+            </div>
+            <span class="pill">for</span>
+          </article>
+          <article class="event review">
+            <div class="time">09:12</div>
+            <div>
+              <strong>Runtime anomaly detected</strong>
+              <div class="meta">Torque variance +18.4% · drive temperature 71 C.</div>
+            </div>
+            <span class="pill review">review</span>
+          </article>
+          <article class="event incident">
+            <div class="time">09:17</div>
+            <div>
+              <strong>Operator intervention</strong>
+              <div class="meta">Conveyor held after abnormal vibration near Drive Assembly 02.</div>
+            </div>
+            <span class="pill incident">against</span>
+          </article>
+        </div>
+      </section>
+      <section>
+        <h2>Decision Evidence Pack</h2>
+        <div class="card">
+          <p class="muted">Question</p>
+          <h3>Should Line A Conveyor return to service after rev_218?</h3>
+          <div class="metric-row"><span>Status</span><span class="status">Not ready</span></div>
+          <div class="metric-row"><span>Confidence</span><span>Low</span></div>
+          <div class="metric-row"><span>Missing</span><span>Inspection</span></div>
+        </div>
+        <div class="card">
+          <h3>Evidence for proceeding</h3>
+          <ul>
+            <li>Smoke tests passed for startup and telemetry registration.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Evidence against proceeding</h3>
+          <ul>
+            <li>Torque variance exceeded previous envelope.</li>
+            <li>Operator held the conveyor after abnormal vibration.</li>
+            <li>Similar signature preceded a four-hour stoppage.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Next action</h3>
+          <p class="action">Collect inspection evidence before expanding the system.</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+
