@@ -2,7 +2,8 @@
 
 Veyra is a reference architecture for reconstructing operational evidence behind high-consequence decisions in Physical AI and intelligent industrial systems.
 
-This repository is intentionally not a polished SaaS demo. It is a founder-grade technical package: domain model, schemas, storage design, APIs, threat model, ADRs, seed data, tests and a runnable reference implementation.
+This repository is intentionally not a polished SaaS demo. It is a founder-grade technical package: domain model, schemas, storage design, APIs, threat model, ADRs, seed data, tests and a runnable reference implementation. <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/951a47ab-89b9-4930-bcc3-bc35105d7b96" />
+
 
 ## Core Question
 
